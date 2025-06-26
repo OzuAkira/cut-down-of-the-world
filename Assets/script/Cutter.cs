@@ -5,12 +5,13 @@ public class Cutter : MonoBehaviour
 {
     public Transform plane;
     public Material crossMaterial;
+    public Camera cam;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
-            SlicedHull hull = gameObject.Slice(plane.position, plane.up);
+            SlicedHull hull = gameObject.Slice(plane.position, cam.transform.up);
 
             if (hull != null)
             {

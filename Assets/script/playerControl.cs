@@ -58,3 +58,5 @@ public class playerControl : MonoBehaviour
         _velocity = new Vector3(axis.x,0,axis.y);
     }
 }
+//参考にしたサイト References
+// https://qiita.com/I_am_bakeneko/items/47e3ef487b58cb898bf9
