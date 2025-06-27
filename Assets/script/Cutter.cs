@@ -3,22 +3,29 @@ using UnityEngine;
 
 public class cutter : MonoBehaviour
 {
-    public Transform plane;
+    private Transform plane;
     public Material crossMaterial;
     public Camera cam;
 
-   /* public Transform cam_transform;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) SliceObj(0);
+    }
     private void Start()
     {
-        cam_transform = cam.transform;
-        cam_transform.rotation = Quaternion.Euler(15, 0, 0);
+        plane = gameObject.transform;
     }
-   */
-    void Update()
+    /*
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SlicedHull hull = gameObject.Slice(plane.position+new Vector3(0,0.1f,0), cam.transform.up);
+        if(Input.GetMouseButtonDown(0))SliceObj(0);
+    }
+    */
+
+    void SliceObj(int i)
+    {
+        if (i == 0) {
+            SlicedHull hull = gameObject.Slice(plane.position + new Vector3(0, 0.1f, 0), cam.transform.up);
 
             if (hull != null)
             {
@@ -31,12 +38,12 @@ public class cutter : MonoBehaviour
                 lowerHull.AddComponent<MeshCollider>().convex = true;
 
                 plane = lowerHull.GetComponent<Transform>();
-//                cam_transform.rotation = Quaternion.Euler(-15, 0, 0);
-                SlicedHull Hull_2 = lowerHull.Slice(plane.position + new Vector3(0,-0.1f,0),cam.transform.up);
+                //                cam_transform.rotation = Quaternion.Euler(-15, 0, 0);
+                SlicedHull Hull_2 = lowerHull.Slice(plane.position + new Vector3(0, -0.1f, 0), cam.transform.up);
 
 
                 //Destroy(lowerHull);
-                
+
                 if (Hull_2 != null)
                 {
                     Debug.Log("run");
@@ -49,11 +56,16 @@ public class cutter : MonoBehaviour
                     lowerHull_2.AddComponent<MeshCollider>().convex = true;
                 }
 
-                    /*
-                    upperHull.transform.position += new Vector3(-1, 0, 0);
-                    lowerHull.transform.position += new Vector3(1, 0, 0);
-                    */
-                }
+                /*
+                upperHull.transform.position += new Vector3(-1, 0, 0);
+                lowerHull.transform.position += new Vector3(1, 0, 0);
+                */
             }
-    }
+        }
+        else if(i == 1)
+        {
+
+        }
+    } 
+    
 }
