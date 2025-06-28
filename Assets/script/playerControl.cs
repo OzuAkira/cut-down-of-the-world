@@ -42,8 +42,8 @@ public class playerControl : MonoBehaviour
         neck.localRotation = Quaternion.Euler(rotationX, 0, 0);         // éÒÇÃâÒì]Çê›íËÅBècï˚å¸ÇÃÇ›âÒì]Ç≥ÇπÇÈ
 
 
-        cam_forward = new Vector3(cam.transform.forward.x, cam.transform.forward.y, cam.transform.forward.z).normalized;
-        cam_right = new Vector3(cam.transform.right.x, cam.transform.right.y, cam.transform.right.z).normalized;
+        cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
+        cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
         gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
         if (Input.GetKey(KeyCode.E))
