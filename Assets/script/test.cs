@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public GameObject hor,player , camera;
+    public GameObject hor,player,camera;
     private Rigidbody rb;
     void Update()
     {

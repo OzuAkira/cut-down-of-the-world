@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class cutter : MonoBehaviour
 {
-    private Transform plane;
-    public Material crossMaterial;
-    public Camera cam;
+   // private Transform plane;
+    private Material crossMaterial;
+    private Camera cam;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,7 +13,9 @@ public class cutter : MonoBehaviour
     }
     private void Start()
     {
-        plane = gameObject.transform;
+       // plane = gameObject.transform;
+        cam = Camera.main;
+        crossMaterial = Resources.Load<Material>("material/white_material");
     }
     /*
     private void Update()
@@ -24,8 +26,9 @@ public class cutter : MonoBehaviour
 
     void SliceObj(int i)
     {
-        if (i == 0) {
-            SlicedHull hull = gameObject.Slice(plane.position + new Vector3(0, 0.1f, 0), cam.transform.up);
+        if (i == 0)
+        {
+            SlicedHull hull = gameObject.Slice(cam.transform.position, cam.transform.up);
 
             if (hull != null)
             {
@@ -37,12 +40,18 @@ public class cutter : MonoBehaviour
                 upperHull.AddComponent<MeshCollider>().convex = true;
                 lowerHull.AddComponent<MeshCollider>().convex = true;
 
-                plane = lowerHull.GetComponent<Transform>();
+                upperHull.AddComponent<cutter>();
+                lowerHull.AddComponent<cutter>();
+                /*
+                upperHull.transform.position += new Vector3(0, 1, 0);
+                lowerHull.transform.position -= new Vector3(0, 1, 0);*/
+
+               // plane = lowerHull.GetComponent<Transform>();
                 //                cam_transform.rotation = Quaternion.Euler(-15, 0, 0);
-                SlicedHull Hull_2 = lowerHull.Slice(plane.position + new Vector3(0, -0.1f, 0), cam.transform.up);
+                SlicedHull Hull_2 = lowerHull.Slice(cam.transform.position + new Vector3(0, -0.1f, 0), cam.transform.up);
 
 
-                //Destroy(lowerHull);
+                Destroy(lowerHull);
 
                 if (Hull_2 != null)
                 {
@@ -54,7 +63,11 @@ public class cutter : MonoBehaviour
 
                     //upperHull_2.AddComponent<MeshCollider>().convex = true;
                     lowerHull_2.AddComponent<MeshCollider>().convex = true;
+
+                    lowerHull_2.AddComponent<cutter>();
                 }
+                upperHull.AddComponent<cutter>();
+                lowerHull.AddComponent<cutter>();
 
                 /*
                 upperHull.transform.position += new Vector3(-1, 0, 0);
@@ -62,10 +75,11 @@ public class cutter : MonoBehaviour
                 */
             }
         }
-        else if(i == 1)
+        else if (i == 1)
         {
 
         }
-    } 
+    }
+   } 
     
-}
+//}
