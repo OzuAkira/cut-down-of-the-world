@@ -4,32 +4,23 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public GameObject ver , hol , player , camera;
-    //private Rigidbody rb;
+    public GameObject ver, hol, player , eim;
+    public Camera _camera;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) StartCoroutine(verticalCut());//StartCoroutine(horTrue());
+        if (Input.GetMouseButtonDown(0)) StartCoroutine(verticalCut());
         if(Input.GetMouseButtonDown(1))StartCoroutine(holizontalCut());
+        if (Input.GetMouseButtonDown(2)) 
+        {
+            if(eim.activeSelf == true)eim.SetActive(false);
+            else eim.SetActive(true);
+        }
     }
-    /*IEnumerator horTrue()
-    {
-        GameObject createdObj = Instantiate(hor, gameObject.transform.position + gameObject.transform.forward,Quaternion.identity);
-        createdObj.transform.parent = null;
-        rb = createdObj.GetComponent<Rigidbody>();
-        rb.AddExplosionForce(1000, gameObject.transform.position - player.transform.forward, 20);
-
-        yield return new WaitForSeconds(10);
-        createdObj.SetActive(false);
-    }
-    */
     IEnumerator verticalCut()
     {
        
-        GameObject v_createdObj = Instantiate(ver, camera.transform.position + gameObject.transform.forward, Quaternion.Euler(gameObject.transform.localEulerAngles.x, player.transform.localEulerAngles.y, 0));
+        GameObject v_createdObj = Instantiate(ver, _camera.transform.position + gameObject.transform.forward, Quaternion.Euler(gameObject.transform.localEulerAngles.x, player.transform.localEulerAngles.y, 0));
         v_createdObj.transform.parent = null;
-       // Debug.Log("xPos= "+player. transform.rotation.y);
-       // rb = createdObj.GetComponent<Rigidbody>();
-
         for(int _ = 0; _ < 30; _++)
         {
             v_createdObj.transform.position += gameObject.transform.forward;
@@ -40,11 +31,8 @@ public class test : MonoBehaviour
     }
     IEnumerator holizontalCut()
     {
-        GameObject h_createdObj = Instantiate(hol, camera.transform.position + gameObject.transform.forward, Quaternion.Euler(gameObject.transform.localEulerAngles.x, player.transform.localEulerAngles.y, 90));
+        GameObject h_createdObj = Instantiate(hol, _camera.transform.position + gameObject.transform.forward, Quaternion.Euler(gameObject.transform.localEulerAngles.x, player.transform.localEulerAngles.y, 90));
         h_createdObj.transform.parent = null;
-        // Debug.Log("xPos= "+player. transform.rotation.y);
-        // rb = createdObj.GetComponent<Rigidbody>();
-
         for (int _ = 0; _ < 30; _++)
         {
             h_createdObj.transform.position += gameObject.transform.forward;
@@ -53,4 +41,7 @@ public class test : MonoBehaviour
         }
         h_createdObj.SetActive(false);
     }
+
+
+
 }

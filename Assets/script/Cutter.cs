@@ -49,7 +49,7 @@ public class cutter : MonoBehaviour
 
                 // plane = lowerHull.GetComponent<Transform>();
                 //                cam_transform.rotation = Quaternion.Euler(-15, 0, 0);
-                SlicedHull Hull_2 = lowerHull.Slice(cam.transform.position + new Vector3(0, -0.1f, 0), cam.transform.up);
+                SlicedHull Hull_2 = lowerHull.Slice(cam.transform.position + cam.transform.up*-0.1f, cam.transform.up);
 
 
                // Destroy(lowerHull);
@@ -96,7 +96,7 @@ public class cutter : MonoBehaviour
 
                 //Destroy(lowerHull);
 
-                SlicedHull Hull_2 = lowerHull.Slice(cam.transform.position + new Vector3(0.1f, 0f, 0), cam.transform.right);
+                SlicedHull Hull_2 = lowerHull.Slice(cam.transform.position + cam.transform.right*-0.1f, cam.transform.right);
 
 
                 
