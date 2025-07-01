@@ -78,7 +78,7 @@ public class cutter : MonoBehaviour
         }
         else if (i == 1)
         {
-            Debug.Log("hol");
+            //Debug.Log("hol");
             SlicedHull hull = gameObject.Slice(cam.transform.position, cam.transform.right);
 
             if (hull != null)
