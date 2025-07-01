@@ -8,8 +8,8 @@ public class gameSetting : MonoBehaviour
 {
     void Update()
     {
-
         
+
         if(Input.GetKeyDown(KeyCode.Escape))
         Application.Quit();
 
